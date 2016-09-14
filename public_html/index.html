@@ -9,86 +9,43 @@
         <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="bower_components/chart.js/dist/Chart.js"></script>
         
+        <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+        <script type="text/javascript" src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
+        
         <link rel="stylesheet" type="text/css" href="charts/doughnut.css">
         <script type="text/javascript" src="charts/doughnut.js"></script>
+        <script type="text/javascript" src="charts/angular-doughnut.js"></script>
         
     </head>
     
-    <body>
+    <body ng-app="app">
         
-        <!-- Chart 1 -->
-        <div id="chart1_container" class="donut-container">
-            <canvas width="200" height="200" id="chart1"></canvas>
-            <div class="donut-inner">
-                <p class="donut-inner-title"></p>
-                <p class="donut-inner-sub-title"></p>
+        <div ng-controller="ChartsController">
+            <!-- Chart 1 -->
+            <div ng-show="chart1Visibility" class="donut-container">
+                <canvas width="200" height="200" id="chart1"></canvas>
+                <div class="donut-inner">
+                    <p class="donut-inner-title"></p>
+                    <p class="donut-inner-sub-title"></p>
+                </div>
+            </div>
+            <!-- Chart 2 -->
+            <div ng-show="chart2Visibility" class="donut-container donut-dependent">
+                <canvas width="200" height="200" id="chart2" ></canvas>
+                <div class="donut-inner">
+                    <p class="donut-inner-title"></p>
+                    <p class="donut-inner-sub-title"></p>
+                </div>
+            </div>
+            <!-- Chart 3 -->
+            <div ng-show="chart3Visibility" class="donut-container donut-dependent">
+                <canvas width="200" height="200" id="chart3"></canvas>
+                <div class="donut-inner">
+                    <p class="donut-inner-title"></p>
+                    <p class="donut-inner-sub-title"></p>
+                </div>
             </div>
         </div>
-        <!-- Chart 2 -->
-        <div id="chart2_container" class="donut-container donut-dependent">
-            <canvas width="200" height="200" id="chart2"></canvas>
-            <div class="donut-inner">
-                <p class="donut-inner-title"></p>
-                <p class="donut-inner-sub-title"></p>
-            </div>
-        </div>
-        <!-- Chart 3 -->
-        <div id="chart3_container" class="donut-container donut-dependent">
-            <canvas width="200" height="200" id="chart3"></canvas>
-            <div class="donut-inner">
-                <p class="donut-inner-title"></p>
-                <p class="donut-inner-sub-title"></p>
-            </div>
-        </div>
-        
-        
-        <script type="text/javascript">
-            
-            // chart 1
-            var innerTitle = "Concepts";
-            var innerSubTitle = "Click on 1 concept to see categories";
-            var data1 = [{"First1": 100,},{"First2": 100},{"First3": 100}];
-            var chart1 = doughnut('chart1', data1, innerTitle, innerSubTitle);
-            
-            document.getElementById('chart1').onclick = function(evt){
-                
-                var clicked = chart1.getElementsAtEvent(evt)[0]._model;
-                // some ajax call or parsing data and ther display 2 chart
-                console.log(clicked);
-                $('#chart2_container').show();
-                $('#chart3_container').hide();
-                
-                // chart 2
-                var data2 = [{"Second1": 45,},{"Second2": 100},{"Second3": 80}];
-                var innerTitle = clicked.label;
-                var innerSubTitle = clicked.label;
-                var chart2 = doughnut('chart2', data2, innerTitle, innerSubTitle);
-
-               
-                document.getElementById('chart2').onclick = function(evt){
-                    // some ajax call or parsing data and ther display 3 chart
-                    var clicked = chart2.getElementsAtEvent(evt)[0]._model;
-                    //console.log(clicked);
-                    $('#chart3_container').show();
-                    
-                    // chart 3
-                    var data3 = [{"Third1": 30,},{"Third2": 20},{"Third3": 10}];
-                    var innerTitle = clicked.label;
-                    var innerSubTitle = clicked.label;
-                    var chart3 = doughnut('chart3', data3, innerTitle, innerSubTitle);
-                    
-                };
-                
-            };
-        </script>
-        
-        
-        
-        
-        
-        
-        
-        
         
     </body>
 </html>
