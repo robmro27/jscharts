@@ -1,0 +1,26 @@
+.donut-container {
+    width:200px;
+    height:200px;
+}
+.donut-inner {
+    margin-top: -135px;
+    margin-left: 60px;
+    width: 85px;
+    color: #163A6E;
+    font-family: 'Open Sans', sans-serif;
+ }
+ .donut-inner p {
+     margin: 0;
+     padding: 0;
+     text-align: center;
+ }
+ .donut-inner-title {
+    font-size: 14px;
+    font-weight: bold;
+ }
+ .donut-inner-sub-title {
+    font-size: 12px;
+ }
+ .donut-dependent {
+     display: none;
+ }
